@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, ScrollView} from "react-native";
 import { Link, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons'; 
+import CardFront from "../components/CardFront";
 
 
 export default function Page() {
@@ -71,7 +72,8 @@ export default function Page() {
         </Text>
       </View>
 
-      <View style={styles.checkingcard}>
+       <CardFront/>       
+      {/* <View style={styles.checkingcard}>
         <View style={styles.imagePos}>
           <Image
             style={styles.image}
@@ -83,7 +85,7 @@ export default function Page() {
             **** **** **** 3178
           </Text>
         </View>
-        </View>
+        </View> */}
 
       {/*  credit card accounts  */}
     
@@ -96,7 +98,7 @@ export default function Page() {
               <View style={styles.imagePos}>
               <Image
                 style={styles.image}
-                source={require('../assets/MyBank.png')}
+                source={require('../assets/MyBank-inverted-logo.png')}
               />
               </View>
               <View style={styles.numberPos}>
