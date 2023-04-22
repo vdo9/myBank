@@ -111,10 +111,10 @@ export default function Page() {
 
         {/* <Text style={styles.title}>Home Page</Text> */}
         {/* <Text style={styles.subtitle}>This is the first page of your app.</Text> */}
-
-
+{/* opening other tabs in screen */}
+{/* 
         <Link href="/deposit" style={styles.link}>Open Deposit</Link>
-        <Link href="/profile" style={styles.link}>Open Profile</Link>
+        <Link href="/profile" style={styles.link}>Open Profile</Link> */}
 
 
         {/* <Link href={{
