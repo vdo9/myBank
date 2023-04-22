@@ -1,31 +1,42 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
 import React from 'react'
+import { Feather } from '@expo/vector-icons'; 
 
-const CardBack = () => {
+import { SharedValue } from 'react-native-reanimated';
+
+interface IProps{
+  rotate: SharedValue<number>
+}
+
+const CardBack = ({rotate}:IProps)=> {
   return (
-    <View>
-          {/* checking account */}
-          <View>
-          <Text style={styles.checking}>
-            Checking Account
-          </Text>
-        </View>
-  
+      <Pressable 
+      onPress={()=>{
+        rotate.value = rotate.value ? 0 : 1;
+      }}>
+      <View>
         <View style={styles.checkingcard}>
           <View style={styles.imagePos}>
-            <Image
-              style={styles.image}
-              source={require('../assets/MyBank.png')}
-            />
+            <Text style={{
+                color:'#A0A09E',
+                fontSize: 16,
+                fontWeight: 'bold'}}>Current Balance</Text>
+            <Text style={{
+                color:'#FFF6DE',
+                fontSize: 26, 
+                fontWeight: 'bold',
+                paddingTop: 5,
+            }}>$3,327.63</Text>
           </View>
-          <View style={styles.numberPos}>
-            <Text style={styles.number}>
-              **** **** **** 3170
+          <View style={styles.transcPos}>
+            <Text style={{color:'#FFB703'}}>
+              Press to View Transaction
             </Text>
+            <Feather style={{marginLeft:60, marginTop: 5}}name="chevrons-down" size={24} color="white" />
           </View>
           </View>
     </View>
-
+    </Pressable>
   )
 }
 
@@ -103,7 +114,7 @@ const styles = StyleSheet.create({
       padding: 18,
       paddingTop: 15,
       borderRadius: 20,
-      backgroundColor: '#FFB703',
+      backgroundColor: '#000000',
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
@@ -155,7 +166,7 @@ const styles = StyleSheet.create({
       height: 50,
     },
     imagePos: {
-      paddingLeft: 180,
+      paddingRight: 140,
       paddingTop: 10
     },
     number: {
@@ -163,10 +174,20 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 28,
       letterSpacing: 2,
+      alignItems:'center',
+      justifyContent:'center'
     },
-    numberPos: {
+    transcPos: {
       marginRight: 20,
       marginBottom: 25,
-    }
+      marginTop: 40
+    },
+    // containerFlip: {
+    //     backgroundColor: '#023047',
+    //     width: 350,
+    //     height: 200,
+    //     borderRadius: 10,
+    //     padding: 20
+    //   },
   });
   

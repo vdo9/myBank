@@ -1,8 +1,15 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
 import React from 'react'
+import {SharedValue} from 'react-native-reanimated'
+interface IProps{
+  rotate: SharedValue<number>
+}
 
-const CardFront = () => {
+const CardFront = ({rotate}:IProps)=>{
   return (
+    <Pressable onPress={()=>{
+        rotate.value = rotate.value ? 0 : 1;
+      }}>
     <View>
         <View style={styles.checkingcard}>
           <View style={styles.imagePos}>
@@ -18,7 +25,7 @@ const CardFront = () => {
           </View>
           </View>
     </View>
-
+    </Pressable>
   )
 }
 
@@ -160,6 +167,13 @@ const styles = StyleSheet.create({
     numberPos: {
       marginRight: 20,
       marginBottom: 25,
-    }
+    },
+    containerFlip: {
+        backgroundColor: '#023047',
+        width: 300,
+        height: 200,
+        borderRadius: 10,
+        padding: 20
+      },
   });
   
