@@ -69,11 +69,12 @@ export default function Layout() {
 
             <Ionicons style={styles.menu} name="menu-outline" size={35} color="white" />
           ),
-          headerRight: () => (
-            <View>
-              <Dropdown setLanguage={setSelectedLanguage} />
-            </View>
-          ),
+          headerTitle: "Your Profile",
+          // headerRight: () => (
+          //   <View>
+          //     <Dropdown setLanguage={setSelectedLanguage} />
+          //   </View>
+          // ),
           tabBarIcon: ({ color }) => (
             <Ionicons name="person-circle-outline" size={35} color="black" />),
         }} />
