@@ -8,7 +8,7 @@ interface IProps {
   rotate: SharedValue<number>;
 }
 
-const CardBack = ({ rotate }: IProps) => {
+const CreditBack = ({ rotate }: IProps) => {
   return (
     <Pressable
       onPress={() => {
@@ -89,7 +89,7 @@ const CardBack = ({ rotate }: IProps) => {
   );
 };
 
-export default CardBack;
+export default CreditBack
 
 const styles = StyleSheet.create({
   container: {
@@ -229,6 +229,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 80,
     top: 120,
+    left: 85,
   },
   creditLabels: {
     flexDirection: "row",
@@ -259,3 +260,6 @@ const styles = StyleSheet.create({
   //     padding: 20
   //   },
 });
+
+
+

@@ -1,112 +1,136 @@
-import { StyleSheet, Text, View, Image, ScrollView} from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { Link, Stack } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 import CardFront from "../components/CardFront";
 import CardBack from "../components/CardBack";
+import CreditFront from "../components/CreditFront";
+import CreditBack from "../components/CreditBack";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 
 export default function Page() {
   const rotate = useSharedValue(0);
-  const frontAnimatedStyles = useAnimatedStyle(()=>{
-    const rotateValue = interpolate(rotate.value,[0,1],[0,180])
-    return{
-      transform:[
+  const creditrotate = useSharedValue(0);
+  const frontAnimatedStyles = useAnimatedStyle(() => {
+    const rotateValue = interpolate(rotate.value, [0, 1], [0, 180])
+    return {
+      transform: [
         {
-          rotateY : withTiming(`${rotateValue}deg`,{duration:1000})
+          rotateY: withTiming(`${rotateValue}deg`, { duration: 1000 })
         }
       ]
     }
   })
-  const backAnimatedStyles = useAnimatedStyle(()=>{
-    const rotateValue = interpolate(rotate.value,[0,1],[180,360])
-    return{
-      transform:[
+  const backAnimatedStyles = useAnimatedStyle(() => {
+    const rotateValue = interpolate(rotate.value, [0, 1], [180, 360])
+    return {
+      transform: [
         {
-          rotateY : withTiming(`${rotateValue}deg`,{duration:1000})
+          rotateY: withTiming(`${rotateValue}deg`, { duration: 1000 })
         }
       ]
     }
   })
-  
+
+  const creditfrontAnimatedStyles = useAnimatedStyle(() => {
+    const rotateValue = interpolate(creditrotate.value, [0, 1], [0, 180])
+    return {
+      transform: [
+        {
+          rotateY: withTiming(`${rotateValue}deg`, { duration: 1000 })
+        }
+      ]
+    }
+  })
+  const creditbackAnimatedStyles = useAnimatedStyle(() => {
+    const rotateValue = interpolate(creditrotate.value, [0, 1], [180, 360])
+    return {
+      transform: [
+        {
+          rotateY: withTiming(`${rotateValue}deg`, { duration: 1000 })
+        }
+      ]
+    }
+  })
   return (
-    <View style={styles.container}> 
-      <ScrollView 
+    <View style={styles.container}>
+      <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
         horizontal={false}
         style={{ width: '100%' }}
       >
-      {/* <Stack.Screen options={{title: 'Home'}} /> */}
-      {/* header greeting */}
-      <View style={styles.greeting}>
-            <Text style={{
-              paddingBottom: 5,
-              fontSize: 20,
-              fontFamily: 'Helvetica',
-              fontWeight: 'bold',
-              color: 'gray'}}>Good morning </Text>
-            <Text style={{
-              paddingBottom: 5,
-              fontSize: 22,
-              fontFamily: 'Helvetica',
-              fontWeight: 'bold',
-            }}>Bill Song</Text>
-            <Text style={{
-              paddingBottom: 5,
-              fontSize: 15,
-              fontFamily: 'Helvetica',
-            }}>April 22, 2023</Text>
-      </View>
+        {/* <Stack.Screen options={{title: 'Home'}} /> */}
+        {/* header greeting */}
+        <View style={styles.greeting}>
+          <Text style={{
+            paddingBottom: 5,
+            fontSize: 20,
+            fontFamily: 'Helvetica',
+            fontWeight: 'bold',
+            color: 'gray'
+          }}>Good morning </Text>
+          <Text style={{
+            paddingBottom: 5,
+            fontSize: 22,
+            fontFamily: 'Helvetica',
+            fontWeight: 'bold',
+          }}>Bill Song</Text>
+          <Text style={{
+            paddingBottom: 5,
+            fontSize: 15,
+            fontFamily: 'Helvetica',
+          }}>April 22, 2023</Text>
+        </View>
 
-      {/* fraud alerts  */}
-      <View style={{
-        paddingTop: 10,
-      }}>
-        <View style={styles.alert}>
-          <Ionicons style={{
-            paddingRight: 5,
-          }}name="warning-outline" size={28} color="white" />
-          <View style={{
-             alignItems: 'center',
-             justifyContent: 'center',
-          }}>
+        {/* fraud alerts  */}
+        <View style={{
+          paddingTop: 10,
+        }}>
+          <View style={styles.alert}>
+            <Ionicons style={{
+              paddingRight: 5,
+            }} name="warning-outline" size={28} color="white" />
+            <View style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
               <Text style={{
-                color:'white',
+                color: 'white',
                 fontWeight: 'bold',
               }}>Suspicious activity on card ending in 0332</Text>
               <Text style={{
-                color:'white',
+                color: 'white',
                 paddingTop: 5,
               }}>Press to View</Text>
             </View>
+          </View>
         </View>
-      </View>
 
-      {/* separator */}
-      <View>
-        <View style={styles.line} />
-      </View>
-
-      {/* checking account */}
-      <View>
-        <Text style={styles.checking}>
-          Checking Account
-        </Text>
-      </View>
-
-      <View style={styles.containerFlip}>
+        {/* separator */}
         <View>
-          <Animated.View style={[styles.frontcard,frontAnimatedStyles]}>
-            <CardFront rotate={rotate}  />
-          </Animated.View>
-          <Animated.View style={[styles.backCard,backAnimatedStyles]}>
-            <CardBack rotate={rotate} />
-          </Animated.View>
+          <View style={styles.line} />
         </View>
-      </View>
-      {/* <View style={styles.checkingcard}>
+
+        {/* checking account */}
+        <View>
+          <Text style={styles.checking}>
+            Checking Account
+          </Text>
+        </View>
+
+        <View style={styles.containerFlip}>
+          <View>
+            <Animated.View style={[styles.frontcard, frontAnimatedStyles]}>
+              <CardFront rotate={rotate} />
+            </Animated.View>
+            <Animated.View style={[styles.backCard, backAnimatedStyles]}>
+              <CardBack rotate={rotate} />
+            </Animated.View>
+          </View>
+        </View>
+        {/* <View style={styles.checkingcard}>
         <View style={styles.imagePos}>
           <Image
             style={styles.image}
@@ -120,46 +144,41 @@ export default function Page() {
         </View>
         </View> */}
 
-      {/*  credit card accounts  */}
-    
-      <View>
-            <Text style={styles.credit}>Credit Cards</Text>
-      </View>
+        {/*  credit card accounts  */}
 
-      <View>
-        <View style={styles.creditcard}>
-              <View style={styles.imagePos}>
-              <Image
-                style={styles.image}
-                source={require('../assets/MyBank-inverted-logo.png')}
-              />
-              </View>
-              <View style={styles.numberPos}>
-                  <Text style={styles.number}>
-                    **** **** **** 0332
-                  </Text>
-              </View>
+        <View>
+          <Text style={styles.credit}>Credit Cards</Text>
         </View>
-      </View>
 
-      <View style={styles.main}>
+        <View>
+          <View>
+            <Animated.View style={[styles.frontcard, creditfrontAnimatedStyles]}>
+              <CreditFront rotate={creditrotate} />
+            </Animated.View>
+            <Animated.View style={[styles.backCard, creditbackAnimatedStyles]}>
+              <CreditBack rotate={creditrotate} />
+            </Animated.View>
+          </View>
+        </View>
 
-        {/* <Text style={styles.title}>Home Page</Text> */}
-        {/* <Text style={styles.subtitle}>This is the first page of your app.</Text> */}
-{/* opening other tabs in screen */}
-{/* 
+        <View style={styles.main}>
+
+          {/* <Text style={styles.title}>Home Page</Text> */}
+          {/* <Text style={styles.subtitle}>This is the first page of your app.</Text> */}
+          {/* opening other tabs in screen */}
+          {/* 
         <Link href="/deposit" style={styles.link}>Open Deposit</Link>
         <Link href="/profile" style={styles.link}>Open Profile</Link> */}
 
 
-        {/* <Link href={{
+          {/* <Link href={{
           pathname: '/profile',
           params: { name: 'Eugene', surname: 'Song'}
         }} style={styles.link}>Open Eugene's Profile</Link> */}
 
-        {/* {users.map(user)} */}
+          {/* {users.map(user)} */}
 
-      </View>
+        </View>
       </ScrollView>
     </View>
   );
@@ -193,7 +212,7 @@ const styles = StyleSheet.create({
   },
   greeting: {
     marginRight: 180,
-  }, 
+  },
   alert: {
     flexDirection: 'row', // Set direction to row
     alignItems: 'center', // Align items along the vertical axis
@@ -250,7 +269,7 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 180,
     width: 330,
-    
+
   },
   checking: {
     marginRight: 210,
@@ -312,18 +331,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
- frontcard:{
-  position:"absolute",
-  backfaceVisibility:'hidden'
- },
- backCard:{
-  backfaceVisibility:"hidden"
- },
-  button:{
-    paddingHorizontal:25,
-    paddingVertical:5,
-    backgroundColor:"#8ecae6",
-    marginTop:10,
-    borderRadius:5,
+  frontcard: {
+    position: "absolute",
+    backfaceVisibility: 'hidden'
+  },
+  backCard: {
+    backfaceVisibility: "hidden"
+  },
+  button: {
+    paddingHorizontal: 25,
+    paddingVertical: 5,
+    backgroundColor: "#8ecae6",
+    marginTop: 10,
+    borderRadius: 5,
   },
 });
