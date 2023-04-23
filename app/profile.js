@@ -15,6 +15,7 @@ import { collection, addDoc, getDocs, updateDoc, doc } from "firebase/firestore"
 
 function profile() {
   const router = useRouter();
+  const navigation = useNavigation();
 
   async function addData(value2) {
     try {
@@ -101,7 +102,7 @@ function profile() {
         </View>
 
         {/* interact */}
-        <View>
+        <View style={{marginTop: 5}}>
           <Pressable onPress={() => navigation.navigate('interact')}>
             <View style={{ width: 80, height: 80, borderRadius: 50, backgroundColor: '#D9D9D9'}}> 
               <View style={{marginLeft: 15, marginTop: 12, marginBottom: 8}}>
@@ -113,9 +114,9 @@ function profile() {
         </View>
 
 
-        <View style={styles.newImagePos}>
+        <View style={[styles.newImagePos, {marginTop: -80}]}>
           <Image
-            style={styles.image}
+            style={[styles.image,{width: 200, height: 80, marginLeft: -50}]}
             source={require('../assets/MyBank.png')}
           />
         </View>
