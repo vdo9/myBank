@@ -6,6 +6,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 // import Tts from 'react-native-tts';
 import * as Speech from 'expo-speech';
 import openMap from 'react-native-open-maps';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import DropDownPicker from "react-native-dropdown-picker";
+
 
 const goBank = () => {
   openMap({ latitude: 33.677010, longitude: -117.831590 });
@@ -13,9 +17,25 @@ const goBank = () => {
 
 
 // handle sound translation
-const handleAtm = () => {
-  // Speech.speak("ATM はどこですか?", {language: "ja-JP"});
-  Speech.speak("自动取款机在哪里", {language: "zh"});
+const handleAtm = (language) => {
+  if(language == "japanese"){
+      Speech.speak("ATM はどこですか?", {language: "ja-JP"});
+  }
+  else if(language == "chinese"){
+    Speech.speak("自动取款机在哪里", {language: "zh"});
+  }
+  else if(language == "korean"){
+    Speech.speak("ATM은 어디에 있습니까?", {language: "ko"});
+  }
+  else if(language == "spanish"){
+    Speech.speak("¿dónde está el cajero automático?", {language: "es"});
+  }
+  else if(language == "english"){
+    Speech.speak("Where is the ATM?", {language: "en"});
+  }
+  else if(language == "vietnamese"){
+    Speech.speak("ATM ở đâu?", {language: "vi"});
+  }
 }
 
 // greeting
@@ -50,12 +70,65 @@ const AtmComponent = () => {
 
 
 const interact = () => {
+ 
+  // from dropdown component
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+
+  const [language, setLanguage] = useState("")
+  const [languages, setInitialLangs] = useState([
+    {
+      label: "English",
+      value: "english",
+    },
+    {
+      label: "Korean",
+      value: "korean",
+    },
+    {
+      label: "Japanese",
+      value: "japanese",
+    },
+    {
+      label: "Chinese",
+      value: "chinese"
+    },
+    {
+      label: "Spanish",
+      value: "spanish"
+    },
+    {
+      label: "Vietnamese",
+      value: "vietnamese"
+    }
+  ]);
+
+  // // context
+  // const selectedLanguage = useContext(AppContext);
+  // console.log(selectedLanguage)
+
   // states
   const [atmVisible, setAtmVisible] = useState(false);
   const [greetingVisible, setGreetingVisible] = useState(true);
 
+
   return (
-    <ScrollView>
+    <>
+      <DropDownPicker
+        style={{backgroundColor: 'white', zIndex: 99999}}
+        open={open}
+        value={value}
+        items={languages}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setInitialLangs}
+        placeholder='Select Language'
+        onSelectItem={(selectedLanguage) => {
+          console.log(selectedLanguage);
+          setLanguage(selectedLanguage.value);
+        }}
+      />
+   <ScrollView>
     <View style={styles.container}>
       <Text style={{
         color:'#797575',
@@ -107,7 +180,7 @@ const interact = () => {
       <View style={styles.box}>
           <View style={{paddingTop: 28, paddingLeft: 28}}>
             <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1, fontWeight: 'bold'}}>Where is the nearest ATM?</Text>
-            <Pressable style={{marginLeft: 272}}onPress={() => handleAtm()}>
+            <Pressable style={{marginLeft: 272}}onPress={() => handleAtm(language)}>
               <AntDesign name="sound" size={24} color="gray" />            
             </Pressable>
           </View>
@@ -149,6 +222,7 @@ const interact = () => {
 
     </View>
     </ScrollView>
+    </>
   )
 }
 

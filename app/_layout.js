@@ -7,8 +7,8 @@ import { StyleSheet, View } from 'react-native';
 import { useState } from 'react';
 import { Text } from 'react-native';
 import { useEffect } from 'react';
-
 import Dropdown from '../components/dropdown';
+import { AppProvider } from '../context/AppContext';
 
 
 // export default Tabs;
@@ -19,6 +19,7 @@ export default function Layout() {
 
 
   const [selectedLanguage, setSelectedLanguage] = useState("e");
+
   
   useEffect(() => {
     console.log('selected language is ', selectedLanguage);
@@ -86,11 +87,11 @@ export default function Layout() {
 
             <Ionicons style={styles.menu} name="menu-outline" size={35} color="black" />
           ),
-          headerRight: () => (
-            <View>
-              <Dropdown setLanguage={setSelectedLanguage} />
-            </View>
-          ),
+          // headerRight: () => (
+          //   <View>
+          //     <Dropdown setLanguage={setSelectedLanguage} />
+          //   </View>
+          // ),
         }} />
 
       </Tabs>
