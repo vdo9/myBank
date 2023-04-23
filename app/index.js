@@ -63,7 +63,7 @@ export default function Page() {
                 paddingBottom: 5,
                 fontSize: 15,
                 fontFamily: 'Helvetica',
-              }}>April 22, 2023</Text>
+              }}>April 23, 2023</Text>
         </View>
         <View>
           <Pressable onPress={() => navigation.navigate('interact')}>
