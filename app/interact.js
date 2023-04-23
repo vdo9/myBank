@@ -1,18 +1,45 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 // import Tts from 'react-native-tts';
 import * as Speech from 'expo-speech';
 
 
+
+// handle sound translation
 const handleAtm = () => {
   // Speech.speak("ATM はどこですか?", {language: "ja-JP"});
   Speech.speak("自动取款机在哪里", {language: "zh"});
 }
 
+// greeting
+const GreetingComponent = () => {
+  return (
+    <View style={{padding: 15, paddingVertical: 22}}>
+      <Text style={{fontSize: 20, fontFamily: 'Helvetica', fontWeight: 'bold', marginVertical: 1}}>Good morning,</Text>
+      <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1}}>Yoojin Song</Text>
+      <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1}}>How can I help?</Text>
+    </View>
+  )
+}
+
+//atm
+const AtmComponent = () => {
+  return (
+    <View style={{padding: 15, paddingVertical: 22}}>
+      <Text style={{fontSize: 20, fontFamily: 'Helvetica', fontWeight: 'bold', marginVertical: 1}}>The nearest ATM is 1.5 miles away.</Text>
+    </View>
+  )
+}
+
+
 const interact = () => {
+  // states
+  const [atmVisible, setAtmVisible] = useState(false);
+  const [greetingVisible, setGreetingVisible] = useState(true);
+
   return (
     <ScrollView>
     <View style={styles.container}>
@@ -37,6 +64,7 @@ const interact = () => {
                   fontSize: 16,
               }}>Support</Text>
         </View>
+        {/* chat bubble */}
         <View style={{
           width: 200, 
           height: 200, 
@@ -44,11 +72,10 @@ const interact = () => {
           borderRadius: 20,
           borderWidth: 4, 
           borderColor: 'black'}}>
-          <View style={{padding: 15, paddingVertical: 22}}>
-            <Text style={{fontSize: 20, fontFamily: 'Helvetica', fontWeight: 'bold', marginVertical: 1}}>Good morning,</Text>
-            <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1}}>Yoojin Song</Text>
-            <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1}}>How can I help?</Text>
-          </View>
+
+          {/* when atm button is clicked, component switches out */}
+          {atmVisible ? <AtmComponent /> : <GreetingComponent />}
+
         </View>
       </View>
 
@@ -62,7 +89,7 @@ const interact = () => {
         marginBottom: 15,
       }}>Choose an option in regards to your account:</Text>
 
-      <Pressable>
+      <Pressable onPress={() => setAtmVisible(!atmVisible)}>
       <View style={styles.box}>
           <View style={{paddingTop: 28, paddingLeft: 28}}>
             <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1, fontWeight: 'bold'}}>Where is the nearest ATM?</Text>
