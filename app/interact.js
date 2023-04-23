@@ -1,7 +1,16 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
+// import Tts from 'react-native-tts';
+import * as Speech from 'expo-speech';
+
+
+const handleAtm = () => {
+  // Speech.speak("ATM はどこですか?", {language: "ja-JP"});
+  Speech.speak("自动取款机在哪里", {language: "zh"});
+}
 
 const interact = () => {
   return (
@@ -53,21 +62,32 @@ const interact = () => {
         marginBottom: 15,
       }}>Choose an option in regards to your account:</Text>
 
+      <Pressable>
       <View style={styles.box}>
-          <View style={{padding: 28}}>
+          <View style={{paddingTop: 28, paddingLeft: 28}}>
             <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1, fontWeight: 'bold'}}>Where is the nearest ATM?</Text>
+            <Pressable style={{marginLeft: 272}}onPress={() => handleAtm()}>
+              <AntDesign name="sound" size={24} color="gray" />            
+            </Pressable>
           </View>
-        </View>
+      </View>
+      </Pressable>
 
         <View style={styles.box}>
-          <View style={{padding: 18}}>
+          <View style={{paddingTop: 18, paddingLeft: 18, flexDirection:'row'}}>
             <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1, fontWeight: 'bold'}}>What is my routing and account number?</Text>
+            <Pressable style={{marginLeft: -25, marginTop: 35, }}>
+              <AntDesign name="sound" size={24} color="gray" />            
+            </Pressable>
           </View>
         </View>
 
         <View style={styles.box}>
-          <View style={{padding: 18}}>
+          <View style={{paddingTop: 18, paddingLeft: 18, flexDirection:'row'}}>
             <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1, fontWeight: 'bold'}}>Can I get a copy of my statements?</Text>
+            <Pressable style={{marginLeft: 65, marginTop: 35, }}>
+              <AntDesign name="sound" size={24} color="gray" />            
+            </Pressable>
           </View>
         </View>
 
