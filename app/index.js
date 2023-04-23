@@ -6,6 +6,7 @@ import CardBack from "../components/CardBack";
 import CreditFront from "../components/CreditFront";
 import CreditBack from "../components/CreditBack";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import dropdown from "../components/dropdown";
 
 
 export default function Page() {
@@ -83,6 +84,7 @@ export default function Page() {
             fontFamily: 'Helvetica',
           }}>April 22, 2023</Text>
         </View>
+
 
         {/* fraud alerts  */}
         <View style={{

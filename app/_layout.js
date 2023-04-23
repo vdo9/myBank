@@ -1,46 +1,82 @@
 import { Stack, useRouter, Tabs } from 'expo-router';
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Ionicons } from '@expo/vector-icons'; 
-import { AntDesign } from '@expo/vector-icons'; 
-import { FontAwesome5 } from '@expo/vector-icons'; 
-import { StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { Text } from 'react-native';
+import { useEffect } from 'react';
 
+import Dropdown from '../components/dropdown';
 
 
 // export default Tabs;
 
 
-export default function Layout() {
-    return (
-      <SafeAreaProvider>
-        <Tabs>
-          <Tabs.Screen name="deposit" options={{ 
-            tabBarLabel: () => null,
-            tabBarIcon: ({color}) => (
-                <Ionicons name="cash-outline" size={35} color="black" />            ),
-            }} />
-          <Tabs.Screen name="index" options={{ 
-            tabBarLabel: () => null, 
-            headerTitle: " ",
-            headerLeft: () => (
-                <Ionicons style={styles.menu} name="menu-outline" size={35} color="black" />
-            ), 
-            tabBarIcon: ({color}) => (
-                <AntDesign name="home" size={35} color="black" />
-            ),
-            }} />
-          <Tabs.Screen name="profile" options={{ 
-            tabBarLabel: ()=>null,
-            tabBarIcon: ({color}) => (
-                <Ionicons name="person-circle-outline" size={35} color="black" />            ),
-            }} />
-        </Tabs>
-      </SafeAreaProvider>
-    );
-  }
 
-  const styles = StyleSheet.create({
-    menu: {
-        marginLeft: 20,
-    }
- })
+export default function Layout() {
+
+  const [selectedLanguage, setSelectedLanguage] = useState("e");
+  
+  useEffect(() => {
+    console.log('selected language is ', selectedLanguage);
+  }, [selectedLanguage]);
+  
+  return (
+    <SafeAreaProvider>
+      <Tabs>
+        <Tabs.Screen name="deposit" options={{
+          tabBarLabel: () => null,
+          headerLeft: () => (
+            <Text>{selectedLanguage}</Text>
+          ),
+          headerRight: () => (
+            <View>
+              <Dropdown setLanguage={setSelectedLanguage} />
+
+            </View>
+          ),
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="cash-outline" size={35} color="black" />),
+        }} />
+
+
+
+        <Tabs.Screen name="index" options={{
+          tabBarLabel: () => null,
+          headerTitle: " ",
+          headerLeft: () => (
+
+            <Ionicons style={styles.menu} name="menu-outline" size={35} color="black" />
+          ),
+          headerRight: () => (
+            <View>
+              <Dropdown setLanguage={setSelectedLanguage} />
+            </View>
+          ),
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="home" size={35} color="black" />
+          ),
+        }} />
+
+        <Tabs.Screen name="profile" options={{
+          tabBarLabel: () => null,
+          headerRight: () => (
+            <View>
+              <Dropdown setLanguage={setSelectedLanguage} />
+            </View>
+          ),
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="person-circle-outline" size={35} color="black" />),
+        }} />
+      </Tabs>
+    </SafeAreaProvider>
+  );
+}
+
+const styles = StyleSheet.create({
+  menu: {
+    marginLeft: 20,
+  }
+})
