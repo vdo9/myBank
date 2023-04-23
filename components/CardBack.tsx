@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.2,
       shadowRadius: 6,
       elevation: 3,
-      height: 180,
+      height: 210,
       width: 330,
       
     },
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.2,
       shadowRadius: 6,
       elevation: 3,
-      height: 180,
+      height: 210,
       width: 330,
     },
     image: {

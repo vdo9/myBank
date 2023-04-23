@@ -1,15 +1,22 @@
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView , Pressable} from "react-native";
 import { Link, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import CardFront from "../components/CardFront";
 import CardBack from "../components/CardBack";
 import CreditFront from "../components/CreditFront";
 import CreditBack from "../components/CreditBack";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+
 import dropdown from "../components/dropdown";
+import { useNavigation } from '@react-navigation/native';
+
 
 
 export default function Page() {
+  const navigation = useNavigation();
+
+
   const rotate = useSharedValue(0);
   const creditrotate = useSharedValue(0);
   const frontAnimatedStyles = useAnimatedStyle(() => {
@@ -60,30 +67,42 @@ export default function Page() {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
         horizontal={false}
-        style={{ width: '100%' }}
+        style={{ width: '100%', height: 800 }}
       >
-        {/* <Stack.Screen options={{title: 'Home'}} /> */}
-        {/* header greeting */}
+      {/* <Stack.Screen options={{title: 'Home'}} /> */}
+      {/* header greeting */}
+      <View style={{ flexDirection: 'row' }}>
         <View style={styles.greeting}>
-          <Text style={{
-            paddingBottom: 5,
-            fontSize: 20,
-            fontFamily: 'Helvetica',
-            fontWeight: 'bold',
-            color: 'gray'
-          }}>Good morning </Text>
-          <Text style={{
-            paddingBottom: 5,
-            fontSize: 22,
-            fontFamily: 'Helvetica',
-            fontWeight: 'bold',
-          }}>Bill Song</Text>
-          <Text style={{
-            paddingBottom: 5,
-            fontSize: 15,
-            fontFamily: 'Helvetica',
-          }}>April 22, 2023</Text>
+              <Text style={{
+                paddingBottom: 5,
+                fontSize: 20,
+                fontFamily: 'Helvetica',
+                fontWeight: 'bold',
+                color: 'gray'}}>Good morning </Text>
+              <Text style={{
+                paddingBottom: 5,
+                fontSize: 22,
+                fontFamily: 'Helvetica',
+                fontWeight: 'bold',
+              }}>Bill Song</Text>
+              <Text style={{
+                paddingBottom: 5,
+                fontSize: 15,
+                fontFamily: 'Helvetica',
+              }}>April 23, 2023</Text>
         </View>
+        {/* interact */}
+        <View>
+          <Pressable onPress={() => navigation.navigate('interact')}>
+            <View style={{ width: 80, height: 80, borderRadius: 50, backgroundColor: '#D9D9D9'}}> 
+              <View style={{marginLeft: 15, marginTop: 12, marginBottom: 8}}>
+                <Feather style={{marginLeft:5, marginBottom: 1}} name="headphones" size={40} color="black" />
+                <Text style={{fontSize: 11, fontWeight: 'bold', marginLeft: 3}}>Interact</Text>
+              </View>   
+            </View>
+          </Pressable>
+        </View>
+      </View>
 
 
         {/* fraud alerts  */}
@@ -93,7 +112,8 @@ export default function Page() {
           <View style={styles.alert}>
             <Ionicons style={{
               paddingRight: 5,
-            }} name="warning-outline" size={28} color="white" />
+              paddingBottom: 6
+            }} name="warning-outline" size={25} color="white" />
             <View style={{
               alignItems: 'center',
               justifyContent: 'center',
@@ -105,6 +125,7 @@ export default function Page() {
               <Text style={{
                 color: 'white',
                 paddingTop: 5,
+                marginRight: 25
               }}>Press to View</Text>
             </View>
           </View>
@@ -191,7 +212,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 24,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   main: {
     flex: 1,
@@ -213,8 +234,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   greeting: {
-    marginRight: 180,
-  },
+    marginRight: 105,
+  }, 
   alert: {
     flexDirection: 'row', // Set direction to row
     alignItems: 'center', // Align items along the vertical axis
@@ -269,7 +290,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
     padding: 10,
-    height: 180,
+    height: 210,
     width: 330,
 
   },
@@ -282,7 +303,7 @@ const styles = StyleSheet.create({
   },
   credit: {
     marginRight: 250,
-    marginTop: 25,
+    marginTop: 20,
     paddingBottom: 15,
     fontWeight: 'bold',
     fontFamily: 'Helvetica',
