@@ -7,7 +7,10 @@ import CardBack from "../components/CardBack";
 import CreditFront from "../components/CreditFront";
 import CreditBack from "../components/CreditBack";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+
+import dropdown from "../components/dropdown";
 import { useNavigation } from '@react-navigation/native';
+
 
 
 export default function Page() {
@@ -100,6 +103,7 @@ export default function Page() {
           </Pressable>
         </View>
       </View>
+
 
         {/* fraud alerts  */}
         <View style={{
