@@ -1,12 +1,17 @@
-import { StyleSheet, Text, View, Image, ScrollView} from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView, Pressable} from "react-native";
 import { Link, Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons'; 
+import { Feather } from '@expo/vector-icons';
 import CardFront from "../components/CardFront";
 import CardBack from "../components/CardBack";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function Page() {
+  const navigation = useNavigation();
+
+
   const rotate = useSharedValue(0);
   const frontAnimatedStyles = useAnimatedStyle(()=>{
     const rotateValue = interpolate(rotate.value,[0,1],[0,180])
@@ -40,24 +45,36 @@ export default function Page() {
       >
       {/* <Stack.Screen options={{title: 'Home'}} /> */}
       {/* header greeting */}
-      <View style={styles.greeting}>
-            <Text style={{
-              paddingBottom: 5,
-              fontSize: 20,
-              fontFamily: 'Helvetica',
-              fontWeight: 'bold',
-              color: 'gray'}}>Good morning </Text>
-            <Text style={{
-              paddingBottom: 5,
-              fontSize: 22,
-              fontFamily: 'Helvetica',
-              fontWeight: 'bold',
-            }}>Bill Song</Text>
-            <Text style={{
-              paddingBottom: 5,
-              fontSize: 15,
-              fontFamily: 'Helvetica',
-            }}>April 22, 2023</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={styles.greeting}>
+              <Text style={{
+                paddingBottom: 5,
+                fontSize: 20,
+                fontFamily: 'Helvetica',
+                fontWeight: 'bold',
+                color: 'gray'}}>Good morning </Text>
+              <Text style={{
+                paddingBottom: 5,
+                fontSize: 22,
+                fontFamily: 'Helvetica',
+                fontWeight: 'bold',
+              }}>Bill Song</Text>
+              <Text style={{
+                paddingBottom: 5,
+                fontSize: 15,
+                fontFamily: 'Helvetica',
+              }}>April 22, 2023</Text>
+        </View>
+        <View>
+          <Pressable onPress={() => navigation.navigate('interact')}>
+            <View style={{ width: 80, height: 80, borderRadius: 50, backgroundColor: '#D9D9D9'}}> 
+              <View style={{marginLeft: 15, marginTop: 12, marginBottom: 8}}>
+                <Feather style={{marginLeft:5, marginBottom: 1}} name="headphones" size={40} color="black" />
+                <Text style={{fontSize: 11, fontWeight: 'bold', marginLeft: 3}}>Interact</Text>
+              </View>   
+            </View>
+          </Pressable>
+        </View>
       </View>
 
       {/* fraud alerts  */}
@@ -192,7 +209,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   greeting: {
-    marginRight: 180,
+    marginRight: 105,
   }, 
   alert: {
     flexDirection: 'row', // Set direction to row

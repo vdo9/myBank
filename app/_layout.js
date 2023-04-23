@@ -34,6 +34,9 @@ export default function Layout() {
             tabBarIcon: ({color}) => (
                 <Ionicons name="person-circle-outline" size={35} color="black" />            ),
             }} />
+          <Tabs.Screen name="interact" options={{ 
+            tabBarButton: () => null
+            }} />
         </Tabs>
       </SafeAreaProvider>
     );
