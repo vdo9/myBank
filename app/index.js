@@ -88,6 +88,7 @@ export default function Page() {
                 fontFamily: 'Helvetica',
               }}>April 23, 2023</Text>
         </View>
+        {/* interact button */}
         <View>
           <Pressable onPress={() => navigation.navigate('interact')}>
             <View style={{ width: 80, height: 80, borderRadius: 50, backgroundColor: '#D9D9D9'}}> 
@@ -99,28 +100,6 @@ export default function Page() {
           </Pressable>
         </View>
       </View>
-        {/* <Stack.Screen options={{title: 'Home'}} /> */}
-        {/* header greeting */}
-        <View style={styles.greeting}>
-          <Text style={{
-            paddingBottom: 5,
-            fontSize: 20,
-            fontFamily: 'Helvetica',
-            fontWeight: 'bold',
-            color: 'gray'
-          }}>Good morning </Text>
-          <Text style={{
-            paddingBottom: 5,
-            fontSize: 22,
-            fontFamily: 'Helvetica',
-            fontWeight: 'bold',
-          }}>Bill Song</Text>
-          <Text style={{
-            paddingBottom: 5,
-            fontSize: 15,
-            fontFamily: 'Helvetica',
-          }}>April 22, 2023</Text>
-        </View>
 
         {/* fraud alerts  */}
         <View style={{
