@@ -1,11 +1,15 @@
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Image, Pressable, Button, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 // import Tts from 'react-native-tts';
 import * as Speech from 'expo-speech';
+import openMap from 'react-native-open-maps';
 
+const goBank = () => {
+  openMap({ latitude: 33.677010, longitude: -117.831590 });
+}
 
 
 // handle sound translation
@@ -29,7 +33,17 @@ const GreetingComponent = () => {
 const AtmComponent = () => {
   return (
     <View style={{padding: 15, paddingVertical: 22}}>
-      <Text style={{fontSize: 20, fontFamily: 'Helvetica', fontWeight: 'bold', marginVertical: 1}}>The nearest ATM is 1.5 miles away.</Text>
+      <Text style={{fontSize: 20, fontFamily: 'Helvetica', marginVertical: 1}}>The nearest ATM is 1.5 miles away.</Text>
+      <TouchableOpacity style={{
+        borderRadius: 25, // adjust as needed
+        backgroundColor: '#443cf4',
+        padding: 10,
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'center',}}
+        onPress={() => goBank()}>
+        <Text style={{color: 'white', fontFamily: 'Helvetica', fontWeight: 'bold'}}>Open Maps</Text>
+      </TouchableOpacity>
     </View>
   )
 }
