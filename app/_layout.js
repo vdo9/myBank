@@ -29,15 +29,17 @@ export default function Layout() {
       <Tabs>
         <Tabs.Screen name="deposit" options={{
           tabBarLabel: () => null,
+          headerTitle: "Deposit and Money Transfer",
           headerLeft: () => (
-            <Text>{selectedLanguage}</Text>
+            <Ionicons style={styles.menu} name="menu-outline" size={35} color="white" />
+            // <Text>{selectedLanguage}</Text>
           ),
-          headerRight: () => (
-            <View>
-              <Dropdown setLanguage={setSelectedLanguage} />
+          // headerRight: () => (
+          //   <View>
+          //     <Dropdown setLanguage={setSelectedLanguage} />
 
-            </View>
-          ),
+          //   </View>
+          // ),
           tabBarIcon: ({ color }) => (
             <Ionicons name="cash-outline" size={35} color="black" />),
         }} />
@@ -63,6 +65,10 @@ export default function Layout() {
 
         <Tabs.Screen name="profile" options={{
           tabBarLabel: () => null,
+          headerLeft: () => (
+
+            <Ionicons style={styles.menu} name="menu-outline" size={35} color="white" />
+          ),
           headerRight: () => (
             <View>
               <Dropdown setLanguage={setSelectedLanguage} />
@@ -71,6 +77,21 @@ export default function Layout() {
           tabBarIcon: ({ color }) => (
             <Ionicons name="person-circle-outline" size={35} color="black" />),
         }} />
+
+        <Tabs.Screen name="interact" options={{
+          tabBarButton: () => null,
+          headerTitle: " ",
+          headerLeft: () => (
+
+            <Ionicons style={styles.menu} name="menu-outline" size={35} color="black" />
+          ),
+          headerRight: () => (
+            <View>
+              <Dropdown setLanguage={setSelectedLanguage} />
+            </View>
+          ),
+        }} />
+
       </Tabs>
     </SafeAreaProvider>
   );

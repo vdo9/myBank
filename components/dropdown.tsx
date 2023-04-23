@@ -26,6 +26,7 @@ const Dropdown = ({ setLanguage }) => {
 
   return (
     <DropDownPicker
+      style={{marginRight: 28}}
       open={open}
       value={value}
       items={languages}
