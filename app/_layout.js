@@ -24,7 +24,7 @@ export default function Layout() {
   useEffect(() => {
     console.log('selected language is ', selectedLanguage);
   }, [selectedLanguage]);
-  
+
   return (
     <SafeAreaProvider>
       <Tabs>
@@ -74,6 +74,7 @@ export default function Layout() {
           // headerRight: () => (
           //   <View>
           //     <Dropdown setLanguage={setSelectedLanguage} />
+          // 
           //   </View>
           // ),
           tabBarIcon: ({ color }) => (
