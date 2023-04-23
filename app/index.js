@@ -64,7 +64,7 @@ export default function Page() {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
         horizontal={false}
-        style={{ width: '100%' }}
+        style={{ width: '100%', height: 800 }}
       >
       {/* <Stack.Screen options={{title: 'Home'}} /> */}
       {/* header greeting */}
@@ -88,7 +88,7 @@ export default function Page() {
                 fontFamily: 'Helvetica',
               }}>April 23, 2023</Text>
         </View>
-        {/* interact button */}
+        {/* interact */}
         <View>
           <Pressable onPress={() => navigation.navigate('interact')}>
             <View style={{ width: 80, height: 80, borderRadius: 50, backgroundColor: '#D9D9D9'}}> 
@@ -108,7 +108,8 @@ export default function Page() {
           <View style={styles.alert}>
             <Ionicons style={{
               paddingRight: 5,
-            }} name="warning-outline" size={28} color="white" />
+              paddingBottom: 6
+            }} name="warning-outline" size={25} color="white" />
             <View style={{
               alignItems: 'center',
               justifyContent: 'center',
@@ -120,6 +121,7 @@ export default function Page() {
               <Text style={{
                 color: 'white',
                 paddingTop: 5,
+                marginRight: 25
               }}>Press to View</Text>
             </View>
           </View>
@@ -206,7 +208,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 24,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   main: {
     flex: 1,
@@ -284,7 +286,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
     padding: 10,
-    height: 180,
+    height: 210,
     width: 330,
 
   },
@@ -297,7 +299,7 @@ const styles = StyleSheet.create({
   },
   credit: {
     marginRight: 250,
-    marginTop: 25,
+    marginTop: 20,
     paddingBottom: 15,
     fontWeight: 'bold',
     fontFamily: 'Helvetica',

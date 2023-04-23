@@ -13,7 +13,7 @@ const CreditFront = ({ rotate }: IProps) => {
       }}
     >
       <View>
-        <View style={styles.creditcard}>
+        <View style={styles.checkingcard}>
           <View style={styles.imagePos}>
             <Image
               style={styles.image}
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     padding: 18,
     paddingTop: 15,
     borderRadius: 20,
-    backgroundColor: "#FFB703",
+    backgroundColor: "#1469A8",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 6,
     elevation: 3,
-    height: 180,
+    height: 210,
     width: 330,
   },
   checking: {
